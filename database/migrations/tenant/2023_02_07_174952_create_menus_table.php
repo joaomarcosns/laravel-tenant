@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId("restaurant_id")->constrained()->cascadeOnDelete();
             $table->string("item");
+            $table->string("description")->nullable();
+            $table->string("photo")->nullable();
+            $table->integer("price");
             $table->timestamps();
         });
     }
