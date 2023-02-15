@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Livewire\Tenants\RestaurantMenu\Index;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -26,10 +27,13 @@ Route::middleware([
     Route::get('/', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });
-    
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
+    Route::prefix('restaurants/menu')->name('restaurants.menu.')->group(function(){
+        Route::get('/', Index::class)->name('index');
+    });
     require __DIR__.'/auth.php';
 });
