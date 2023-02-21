@@ -4,7 +4,7 @@
     <div class="py-12" x-data="{open: false}">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-start mb-8">
-                <a @click="open = true; Livewire.emit('modalOpened');"
+                <a @click="open = true;"
                    class="px-4 py-2 text-white font-bold rounded bg-blue-700 border border-blue-900 hover:bg-blue-500
                    transition duration-300 ease-in-out cursor-pointer">
                     Criar Itens Cardápio
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="flex items-center gap-2">
-                            <button @click="Livewire.emit('modalOpened'); Livewire.emit('editMenuItem', {{$item->id}}); open = true;"
+                            <button @click="Livewire.emit('editMenuItem', {{$item->id}}); open = true;"
                                 class="px-2 py-1 text-white font-bold rounded bg-blue-700 border border-blue-900 hover:bg-blue-500
                                        transition duration-300 ease-in-out text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
