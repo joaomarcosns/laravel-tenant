@@ -12,6 +12,6 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.tenants.restaurant-menu.index')->with('menuItems', Menu::paginate(static::TOTAL_PER_PAGE));
+        return view('livewire.tenants.restaurant-menu.index')->with('menuItems', Menu::orderBy('id', 'DESC')->paginate(static::TOTAL_PER_PAGE));
     }
 }

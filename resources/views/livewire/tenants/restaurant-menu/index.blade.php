@@ -26,8 +26,11 @@
                                     <img src="{{asset('storage/' . $item->photo)}}" alt="Thumb do vídeo {{$item->item}}" class="max-w-full">
                                 @endif
                             </div>
-
-                            <h2>{{$item->item}}</h2>
+                            <div>
+                                <h2 class="mt-4">{{$item->item}}</h2>
+                                <h4 class="mt-4">R$ {{$item->price}}</h4>
+                                <p  class="mt-4">{{$item->description}}</p>
+                            </div>
                         </div>
 
                         <div class="flex items-center gap-2">
