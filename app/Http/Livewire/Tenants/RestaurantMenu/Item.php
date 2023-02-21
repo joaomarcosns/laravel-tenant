@@ -8,9 +8,10 @@ use Livewire\WithFileUploads;
 
 class Item extends Component
 {
-    // use WithFileUploads;
+    use WithFileUploads;
 
     public $menu;
+    public $photo;
 
     protected $listeners = ['editMenuItem', 'modalClosed'];
 
@@ -18,7 +19,7 @@ class Item extends Component
         'menu.item' => 'required|max:255',
         'menu.description' => 'nullable|string|max:255',
         'menu.price' => 'required',
-        'menu.photo' => 'nullable|image',
+        'photo' => 'nullable|image',
     ];
 
     public function mount()

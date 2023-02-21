@@ -37,12 +37,14 @@
         <div class="w-full mb-8">
             <div class="w-1/2">
                 <label>Foto Item</label>
-                <input type="file" class="w-full rounded mt-2 @error('menu.photo') border-red-700 @enderror" wire:model="menu.photo">
+                <input type="file" class="w-full rounded mt-2 @error('photo') border-red-700 @enderror" wire:model="photo">
 
-                @error('menu.photo')
+                @error('photo')
                 <strong class="block mt-4 text-red-700 font-bold">{{$message}}</strong>
                 @enderror
             </div>
+
+            <img class="mt-4" src="{{$photo?->temporaryUrl()}}" alt="">
         </div>
 
         <button
