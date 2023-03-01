@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Livewire\Tenants\RestaurantMenu\Index;
+use App\Models\Tenant\Menu;
+use App\Models\Tenant\Restaurant;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -24,9 +26,11 @@ Route::middleware([
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    });
+    Route::get('/', function (Restaurant $restaurant, Menu $menu) {
+        $restaurant = $restaurant->first();
+        $menuItems = $menu->orderBy('id', 'DESC')->paginate(10);
+        return view('tenant-home', compact('restaurant', 'menuItems'));
+    })->name('tenant.home');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
