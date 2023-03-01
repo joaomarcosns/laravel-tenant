@@ -17,9 +17,11 @@ class Delete extends Component
 
     public function deleteItem()
     {
-        $storage = Storage::disk('public');
-        if($storage->exists($this->menu->photo)) $storage->delete($this->menu->photo);
-        
+        if($this->menu->photo) {
+            $storage = Storage::disk('public');
+            if($storage->exists($this->menu->photo)) $storage->delete($this->menu->photo);
+        }
+
         $this->menu->delete();
         $this->emit('menuItemDeleted');
     }

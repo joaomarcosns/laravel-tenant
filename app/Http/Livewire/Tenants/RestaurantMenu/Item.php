@@ -45,8 +45,9 @@ class Item extends Component
 
         $this->emit('menuItemUpdated');
         $this->dispatchBrowserEvent('modal-close');
+        $this->menu = new Menu();
 
-        $this->reset('menu', 'photo');
+        $this->reset('photo');
 
         session()->flash('success', 'Item salvo/atualizado com sucesso!');
     }
@@ -60,7 +61,8 @@ class Item extends Component
     public function modalClosed()
     {
         $this->resetValidation();
-        $this->reset('menu', 'photo');
+        $this->menu = new Menu();
+        $this->reset('photo');
     }
 
     public function render()

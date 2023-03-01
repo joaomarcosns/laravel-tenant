@@ -35,7 +35,7 @@
         </div>
 
         <div class="w-full mb-8">
-            <div class="w-1/2">
+            <div class="w-full">
                 <label>Foto Item</label>
                 <input type="file" class="w-full rounded mt-2 @error('photo') border-red-700 @enderror" wire:model="photo">
 
@@ -43,11 +43,11 @@
                 <strong class="block mt-4 text-red-700 font-bold">{{$message}}</strong>
                 @enderror
             </div>
-            <div class="w-1/2">
+            <div class="w-full mt-4">
                 @if ($photo)
                     <img class="mt-4" src="{{$photo?->temporaryUrl()}}" alt="">
                 @elseif($menu?->photo)
-                    <img class="mt-4" src="{{$menu?->photo}}" alt="">
+                    <img class="mt-4" src="{{route('server.image', str_replace('/', '|', $menu->photo))}}" alt="">
                 @endif
 
             </div>

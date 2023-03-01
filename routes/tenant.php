@@ -35,5 +35,13 @@ Route::middleware([
     Route::prefix('restaurants/menu')->name('restaurants.menu.')->group(function(){
         Route::get('/', Index::class)->name('index');
     });
+    Route::get('/photo/{path}', function ($path) {
+        $image = str_replace('|', '/', $path);
+        $path = storage_path('app/public/' . $image);
+
+        $mimeType = \Illuminate\Support\Facades\File::mimeType($path);
+
+        return response(file_get_contents($path))->header('Content-type', $mimeType);
+    })->name('server.image');
     require __DIR__.'/auth.php';
 });
