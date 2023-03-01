@@ -43,8 +43,14 @@
                 <strong class="block mt-4 text-red-700 font-bold">{{$message}}</strong>
                 @enderror
             </div>
+            <div class="w-1/2">
+                @if ($photo)
+                    <img class="mt-4" src="{{$photo?->temporaryUrl()}}" alt="">
+                @elseif($menu?->photo)
+                    <img class="mt-4" src="{{$menu?->photo}}" alt="">
+                @endif
 
-            <img class="mt-4" src="{{$photo?->temporaryUrl()}}" alt="">
+            </div>
         </div>
 
         <button

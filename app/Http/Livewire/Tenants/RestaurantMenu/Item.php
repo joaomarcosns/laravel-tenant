@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tenants\RestaurantMenu;
 
 use App\Models\Tenant\Menu;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -30,12 +31,22 @@ class Item extends Component
     public function saveItem()
     {
         $this->validate();
+
+        if($this->photo && $this->menu->photo) {
+            $storage = Storage::disk('public');
+
+            if($storage->exists($this->menu->photo)) $storage->delete($this->menu->photo);
+        }
+
+        $this->menu->photo = $this->photo ? $this->photo->store("menu-itens-photos", 'public') : $this->menu->photo;
+
+
         $this->menu->save();
 
         $this->emit('menuItemUpdated');
         $this->dispatchBrowserEvent('modal-close');
 
-        $this->reset('menu');
+        $this->reset('menu', 'photo');
 
         session()->flash('success', 'Item salvo/atualizado com sucesso!');
     }
@@ -49,7 +60,7 @@ class Item extends Component
     public function modalClosed()
     {
         $this->resetValidation();
-        $this->reset('menu');
+        $this->reset('menu', 'photo');
     }
 
     public function render()
