@@ -1,4 +1,4 @@
-<div>
+<div x-data>
     <x-slot name="header">Meu Restaurante</x-slot>
     @if(session()->has('success'))
         <div class="w-full px-2 py-4 border border-green-900 bg-green-400 text-green-900 rounded mb-10">
@@ -29,7 +29,8 @@
 
             <div class="w-1/2">
                 <label>Telefone Fixo</label>
-                <input type="text" class="w-full rounded mt-2 @error('restaurant.phone') border-red-700 @enderror" wire:model="restaurant.phone">
+                <input type="text" class="w-full rounded mt-2 @error('restaurant.phone') border-red-700 @enderror"
+                x-mask="(99) 99999-9999" wire:model="restaurant.phone">
 
                 @error('restaurant.phone')
                 <strong class="block mt-4 text-red-700 font-bold">{{$message}}</strong>
@@ -38,7 +39,8 @@
 
            <div class="w-1/2">
                <label>Whatsapp</label>
-               <input type="text" class="w-full rounded mt-2 @error('restaurant.whatsapp') border-red-700 @enderror" wire:model="restaurant.whatsapp">
+               <input type="text" class="w-full rounded mt-2 @error('restaurant.whatsapp') border-red-700 @enderror"
+               x-mask="(99) 99999-9999" wire:model="restaurant.whatsapp">
 
                @error('restaurant.whatsapp')
                <strong class="block mt-4 text-red-700 font-bold">{{$message}}</strong>
