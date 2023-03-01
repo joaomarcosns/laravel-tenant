@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Jobs\CreateFrameworkDirectoriesForTenant;
 use App\Jobs\CreateRootUserTenant;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ class TenancyServiceProvider extends ServiceProvider
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
                     // Jobs\SeedDatabase::class,
+                    CreateFrameworkDirectoriesForTenant::class,
                     CreateRootUserTenant::class
 
                     // Your own jobs to prepare the tenant.
