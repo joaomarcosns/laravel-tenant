@@ -35,6 +35,7 @@ class RegisterTenantRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge(['domain' => $this->domain .'.localhost']);
+        $centralDomain = config('tenancy.central_domains')[0];
+        $this->merge(['domain' => $this->domain . '.' . $centralDomain]);
     }
 }
